@@ -1,65 +1,70 @@
+using System;
+using System.Collections.Generic;
+using System.Reflection;
 
-# Paste the link to your GitHub repo inside the code comments
+// Paste the link to your GitHub repo inside the code comments
 
-# Your code starts after this line
+// Your code starts after this line
 
 [TestClass]
 public class CanDriveTests
 {
-    [Test]
+    [TestMethod]
     public void testMethod1()
     {
-        assert.isfalse(CanDriveMethod.CanDrive(0));
+        Assert.IsFalse(CanDriveMethod.CanDrive(0));
     }
-    [Test]
+    [TestMethod]
     public void testMethod2()
     {
-        assert.isfalse(CanDriveMethod.CanDrive(3));
+        Assert.IsFalse(CanDriveMethod.CanDrive(3));
     }
-    [Test]
+    [TestMethod]
     public void testMethod3()
     {
-        assert.isfalse(CanDriveMethod.CanDrive(15));
+        Assert.IsFalse(CanDriveMethod.CanDrive(15));
     }
-    [Test]
-    public void testMethod3()
+    [TestMethod]
+    public void testMethod4()
     {
-        assert.istrue(CanDriveMethod.CanDrive(16));
+        Assert.IsTrue(CanDriveMethod.CanDrive(16));
     }
-    [Test]
-    public void testMethod3()
+    [TestMethod]
+    public void testMethod5()
     {
-        assert.istrue(CanDriveMethod.CanDrive(17));
+        Assert.IsTrue(CanDriveMethod.CanDrive(17));
     }
-    [Test]
-    public void testMethod3()
+    [TestMethod]
+    public void testMethod6()
     {
-        assert.istrue(CanDriveMethod.CanDrive(50));
+        Assert.IsTrue(CanDriveMethod.CanDrive(50));
     }
     
 }
-public class CanDriveMethod
+public static class CanDriveMethod
 {
-    public bool CanDrive(int age) {
-
-    const int drivingAge = 16; return age >= drivingAge;
-
+    public static bool CanDrive(int age)
+    {
+        const int drivingAge = 16;
+        return age >= drivingAge;
+    }
 }
+[TestClass]
 public class LoginTest
 {
     private static IWebDriver driver = new ChromeDriver();
-    
-      public void successfulTest()
+    [TestMethod]
+    public void successfulTest()
     {
         
         driver.Navigate().GoToUrl("https://www.yourlearningpal.com/login");
-      
+        
         var user = driver.FindElement(By.Id("txtUser"));
         user.Click();
         user.Clear();
         user.SendKeys("test1");
     
-      
+        
         var password = driver.FindElement(By.Id("txtPassword"));
         password.Click();
         password.Clear();
@@ -71,24 +76,23 @@ public class LoginTest
     
         
     }
-}
-    
-     public void unsuccessfulTest()
+    [TestMethod]
+    public void unsuccessfulTest()
     {
-       
+        
         driver.Navigate().GoToUrl("https://www.yourlearningpal.com/login");
-     
+        
         var user = driver.FindElement(By.Id("txtUser"));
         user.Click();
         user.Clear();
         user.SendKeys("test1");
     
-       
+        
         var password = driver.FindElement(By.Id("txtPassword"));
         password.Click();
         password.Clear();
         password.SendKeys("test1234");
-     
+        
         var login = driver.FindElement(By.Id("button"));
         login.Click();
     
@@ -96,4 +100,4 @@ public class LoginTest
     }
 }
 
-# Your code ends before this line
+// Your code ends before this line
