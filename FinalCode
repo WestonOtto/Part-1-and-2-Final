@@ -1,0 +1,38 @@
+using System;
+using System.Text;
+
+public class MortgageTest
+{
+    private static IWebDriver driver = new ChromeDriver();
+
+    public void Test()
+    {
+        # Your code starts here
+       
+        driver.Navigate().GoToUrl("https://www.moneyunder30.com/mortgage-calculator/");
+        
+        var amt = driver.FindElement(By.Id("fieldname23_1"));
+        amt.Clear();
+        amt.SendKeys("100000");
+       
+        var dp = driver.FindElement(By.Id("fieldname24_1"));
+        dp.Clear();
+        dp.SendKeys("0");
+       
+        var ir = driver.FindElement(By.Id("fieldname25_1"));
+        ir.Clear();
+        ir.SendKeys("3.50");
+
+        var t = driver.FindElement(By.Id("fieldname19_1"));
+        t.Clear();
+        t.SendKeys("30");
+        # calculat button
+        var calc = driver.FindElement(By.Id("fieldname26_1"));
+        calc.Click();
+     
+        var r = driver.FindElement(By.Id("fieldname20_1"));
+        var payment = r.GetAttribute("value");
+        Assert.AreEqual("$449.04", payment);
+        # Your code ends here
+    }
+}
