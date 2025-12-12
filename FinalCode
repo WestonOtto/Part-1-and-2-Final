@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 
 // Paste the link to your GitHub repo inside the code comments
-
+// https://github.com/WestonOtto/Part-1-and-2-Final.git
 // Your code starts after this line
 
 [TestClass]
@@ -12,12 +12,12 @@ public class CanDriveTests
     [TestMethod]
     public void testMethod1()
     {
-        Assert.IsFalse(CanDriveMethod.CanDrive(0));
+        Assert.IsFalse(CanDriveMethod.CanDrive(int.MinValue));
     }
     [TestMethod]
     public void testMethod2()
     {
-        Assert.IsFalse(CanDriveMethod.CanDrive(3));
+        Assert.IsFalse(CanDriveMethod.CanDrive(int.MinValue + 1));
     }
     [TestMethod]
     public void testMethod3()
@@ -37,7 +37,12 @@ public class CanDriveTests
     [TestMethod]
     public void testMethod6()
     {
-        Assert.IsTrue(CanDriveMethod.CanDrive(50));
+        Assert.IsTrue(CanDriveMethod.CanDrive(int.MaxValue - 1));
+    }
+    [TestMethod]
+    public void testMethod7()
+    {
+        Assert.IsTrue(CanDriveMethod.CanDrive(int.MaxValue));
     }
     
 }
@@ -59,6 +64,8 @@ public class LoginTest
         
         driver.Navigate().GoToUrl("https://www.yourlearningpal.com/login");
         
+        var loginURL = driver.Url;
+        
         var user = driver.FindElement(By.Id("txtUser"));
         user.Click();
         user.Clear();
@@ -72,6 +79,10 @@ public class LoginTest
         
         var login = driver.FindElement(By.CssSelector("button[type='submit']"));
         login.Click();
+        
+        Assert.AreNotEqual(loginURL, driver.Url);
+        
+        
 
     
         
@@ -81,6 +92,7 @@ public class LoginTest
     {
         
         driver.Navigate().GoToUrl("https://www.yourlearningpal.com/login");
+        var loginURL = driver.Url;
         
         var user = driver.FindElement(By.Id("txtUser"));
         user.Click();
@@ -93,8 +105,11 @@ public class LoginTest
         password.Clear();
         password.SendKeys("test1234");
         
-        var login = driver.FindElement(By.Id("button"));
+        var login = driver.FindElement(By.CssSelector("button[type='submit']"));
         login.Click();
+        
+        Assert.AreEqual(loginURL, driver.Url);
+    
     
         
     }
